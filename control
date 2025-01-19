@@ -1,0 +1,9 @@
+Package: Osdag-package
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: python3
+Maintainer: Your Name <youremail@example.com>
+Description: A Python-based script for Osdag setup and automation.
+
