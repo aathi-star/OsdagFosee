@@ -1,0 +1,27 @@
+app-id: com.osdag.insta-osdag
+runtime: org.freedesktop.Platform
+runtime-version: '21.08'
+sdk: org.freedesktop.Sdk
+command: /app/bin/insta-osdag.py
+finish-args:
+  - --share=network
+  - --socket=x11
+  - --share=ipc
+modules:
+  - name: python3
+    buildsystem: simple
+    build-commands:
+      - python3 -m pip install --prefix=/app setuptools pip wheel
+    build-options:
+      build-args:
+        - --share=network
+    
+  - name: osdag
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/bin
+      - install -D insta-osdag.py ${FLATPAK_DEST}/bin/insta-osdag.py
+      - chmod +x ${FLATPAK_DEST}/bin/insta-osdag.py
+    sources:
+      - type: dir
+        path: .
